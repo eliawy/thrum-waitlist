@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>THRUM · Join the waitlist</title>
+<meta name="description" content="THRUM mixes your personal afternoon shot from how you slept and trained, and explains every dose. Join the waitlist.">
+<meta name="theme-color" content="#0b0b0d">
+<meta property="og:title" content="THRUM · Every dose, explained.">
+<meta property="og:description" content="A home machine that mixes your afternoon shot from how you slept and trained.">
+<meta property="og:image" content="media/machine-reveal-poster.jpg">
+<link rel="preload" href="fonts/Archivo-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="machine.glb" as="fetch" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.min.js","three/addons/":"./vendor/three/addons/"}}</script>
+</head>
+<body>
+
+<header class="bar" id="bar">
+  <a class="th-name" href="#top">THRUM</a>
+  <a class="btn btn--primary btn--sm" href="#join" data-open-sheet>Join the waitlist</a>
+</header>
+
+<main id="top">
+  <!-- Chapter 1 · Studio: the machine on a sticky stage, one sentence per screen -->
+  <section class="stage" aria-label="How THRUM works">
+    <div class="stage__visual" aria-hidden="true">
+      <img class="stage__poster" src="media/machine-reveal-poster.jpg" alt="">
+      <canvas id="machine"></canvas>
+    </div>
+
+    <div class="stage__steps">
+      <div class="step step--hero" data-step="0">
+        <h1 class="display">Your afternoon,<br>dosed.</h1>
+        <p class="lede">A home machine that mixes your supplement shot from how you slept and trained, and tells you why. Ready before the 15:30 dip.</p>
+        <form class="capture" id="join" novalidate>
+          <div class="capture__bar">
+            <label class="sr" for="email-hero">Email</label>
+            <input id="email-hero" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.ch" required>
+            <button class="btn btn--primary" type="submit">Join the waitlist</button>
+          </div>
+          <label class="capture__consent"><input type="checkbox" name="consent" value="yes"> <span>Email me about THRUM and the prototype test.</span></label>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="capture__status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="count" id="count" hidden></p>
+        <p class="hint">Drag the machine to turn it.</p>
+      </div>
+
+      <div class="step" data-step="1">
+        <h2 class="headline">It reads your night.</h2>
+        <p>Sleep, recovery and training from Garmin or Apple Health. No watch? Three quick questions on your phone.</p>
+        <dl class="readout">
+          <div><dt>Sleep</dt><dd class="num">5 h 40</dd></div>
+          <div><dt>HRV</dt><dd class="num">58 ms</dd></div>
+          <div><dt>Training</dt><dd class="num">45 min</dd></div>
+        </dl>
+      </div>
+
+      <div class="step" data-step="2">
+        <h2 class="headline">It picks your dose. And says why.</h2>
+        <p>Eight powder cartridges, a hard limit on each. Tap one to turn the drum.</p>
+        <div class="cartridges" role="radiogroup" aria-label="Cartridges">
+          <button type="button" role="radio" aria-checked="true" data-cart="57" style="--p:var(--powder-amber)"><i></i>Caffeine <span class="num">40 mg</span></button>
+          <button type="button" role="radio" aria-checked="false" data-cart="56" style="--p:var(--powder-ice)"><i></i>Electrolytes <span class="num">500 mg</span></button>
+          <button type="button" role="radio" aria-checked="false" data-cart="54" style="--p:var(--powder-mint)"><i></i>Magnesium <span class="num">300 mg</span></button>
+          <button type="button" role="radio" aria-checked="false" data-cart="53" style="--p:var(--powder-chalk)"><i></i>Creatine <span class="num">3 g</span></button>
+        </div>
+        <p class="why" id="why"><b>Why:</b> 5 h 40 of sleep, so a small dose of caffeine. Early enough to sleep well tonight.</p>
+        <p class="fine">Example shot. Our doses are still being checked.</p>
+      </div>
+
+      <div class="step" data-step="3">
+        <h2 class="headline">One tap. Your shot, to go.</h2>
+        <p>The drum turns, the powders drop, and your to-go cup is ready for the office or uni.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="film" aria-label="Rendered film of the machine">
+    <video src="media/machine-mixing-4s.mp4" poster="media/machine-mixing-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+    <p class="film__note">Rendered from the Fusion model our team designed.</p>
+  </section>
+
+  <!-- Chapter 2 · THRUM Red: the problem in three numbers -->
+  <section class="chapter chapter--red" aria-labelledby="why-h">
+    <div class="wrap">
+      <h2 class="headline" id="why-h">Why the afternoon needs a better plan.</h2>
+      <div class="facts">
+        <div class="fact"><span class="fact__value num">66<small>%</small></span><span>are least focused between 12:00 and 18:00.</span></div>
+        <div class="fact"><span class="fact__value num">56<small>%</small></span><span>of supplement users dose by guess or by the label.</span></div>
+        <div class="fact"><span class="fact__value num">54<small>%</small></span><span>of tracker users did nothing after their last sleep score.</span></div>
+      </div>
+      <p class="source">Our survey, 38 people, Zurich, October 2026.</p>
+    </div>
+  </section>
+
+  <!-- Chapter 3 · Daylight: prototype, questions, final sign-up -->
+  <section class="chapter chapter--day" aria-label="More about THRUM">
+    <div class="wrap day">
+      <div class="proto">
+        <div>
+          <p class="label">In testing</p>
+          <h2 class="title-lg">Try the prototype</h2>
+          <p>The clickable THRUM app goes live here after our test round. People on the waitlist get the link first.</p>
+        </div>
+        <a class="btn btn--secondary" id="proto-link" href="#" target="_blank" rel="noopener" hidden>Open the prototype</a>
+      </div>
+
+      <div class="faq">
+        <h2 class="title-lg">Questions</h2>
+        <details><summary>Do I need a smartwatch?</summary><p>No. THRUM reads Garmin and Apple Health, and works without any tracker through a 30-second check-in.</p></details>
+        <details><summary>What will it cost?</summary><p>We plan a one-time price for the machine and a monthly powder plan, with a cheaper starter plan. People on the waitlist hear the price first.</p></details>
+        <details><summary>What happens with my data?</summary><p>We read only what the dose needs, with your consent, and you can see and delete everything. Your email is used for THRUM updates only.</p></details>
+      </div>
+
+      <div class="final">
+        <h2 class="headline">Be first in line.</h2>
+        <form class="capture" id="join-2" novalidate>
+          <div class="capture__bar">
+            <label class="sr" for="email-final">Email</label>
+            <input id="email-final" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.ch" required>
+            <button class="btn btn--primary" type="submit">Join the waitlist</button>
+          </div>
+          <label class="capture__consent"><input type="checkbox" name="consent" value="yes"> <span>Email me about THRUM and the prototype test.</span></label>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="capture__status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+    <footer class="foot wrap">
+      <span class="th-name th-name--sm">THRUM</span>
+      <p>A student project in Digital Business Innovation at the University of Zurich, HS26. THRUM is not for sale yet and makes no health claims.</p>
+    </footer>
+  </section>
+</main>
+
+<!-- Floating join bar: appears once the hero form has scrolled away -->
+<div class="dock" id="dock" aria-hidden="true">
+  <span>Waitlist open</span>
+  <button class="btn btn--primary btn--sm" type="button" data-open-sheet>Join</button>
+</div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet__scrim" data-close-sheet></div>
+  <div class="sheet__card" role="dialog" aria-modal="true" aria-labelledby="sheet-h">
+    <div class="sheet__grab" aria-hidden="true"></div>
+    <div class="sheet__view" data-view="join">
+      <h3 class="title" id="sheet-h">Join the THRUM waitlist</h3>
+      <p class="muted">We email you when the prototype test opens in Zurich.</p>
+      <form class="capture" id="join-sheet" novalidate>
+        <div class="capture__bar">
+          <label class="sr" for="email-sheet">Email</label>
+          <input id="email-sheet" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.ch" required>
+          <button class="btn btn--primary" type="submit">Join</button>
+        </div>
+        <label class="capture__consent"><input type="checkbox" name="consent" value="yes"> <span>Email me about THRUM and the prototype test.</span></label>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="capture__status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="sheet__view" data-view="more" hidden>
+      <p class="ok">✓ You're on the list.</p>
+      <h3 class="title">Two quick questions?</h3>
+      <form id="more">
+        <fieldset>
+          <legend>When would THRUM help you most?</legend>
+          <div class="choices">
+            <label><input type="radio" name="moment" value="Afternoon focus"><span>Afternoon focus</span></label>
+            <label><input type="radio" name="moment" value="Around training"><span>Around training</span></label>
+            <label><input type="radio" name="moment" value="Sleep and recovery"><span>Sleep and recovery</span></label>
+            <label><input type="radio" name="moment" value="Everyday routine"><span>Everyday routine</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Would you test the prototype in Zurich?</legend>
+          <div class="choices">
+            <label><input type="radio" name="test" value="Yes"><span>Yes</span></label>
+            <label><input type="radio" name="test" value="Maybe"><span>Maybe</span></label>
+            <label><input type="radio" name="test" value="No"><span>No</span></label>
+          </div>
+        </fieldset>
+        <label class="field-label" for="name-more">First name <span>(optional)</span></label>
+        <input class="field" id="name-more" name="name" type="text" autocomplete="given-name">
+        <div class="sheet__actions">
+          <button class="btn btn--primary" type="submit">Send</button>
+          <button class="btn btn--quiet" type="button" data-close-sheet>Skip</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
